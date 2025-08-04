@@ -53,25 +53,25 @@ def ext_jobs():
             try:
                 title_elem = li.find_element(By.CLASS_NAME, "new-listing__header__title")
                 company_elem = li.find_element(By.CLASS_NAME, "new-listing__company-name")
-                location_elem = li.find_element(By.CLASS_NAME, "new-listing__company-headquarters")
+                # location_elem = li.find_element(By.CLASS_NAME, "new-listing__company-headquarters")
                 category_elems = li.find_elements(By.CSS_SELECTOR, "div.new-listing__categories > p")
 
                 title = title_elem.text.strip()
                 company = company_elem.text.strip()
-                location = location_elem.text.strip()
+                # location = location_elem.text.strip()
                 categories = [cat.text.strip() for cat in category_elems]
 
                 job = {
                     "title": title,
                     "company": company,
-                    "location": location,
+                    # "location": location,
                     "categories": categories
                 }
 
                 jobs.append(job)
 
             except Exception as e:
-                continue  # skip if any element is missing
+                continue  
 
     return jobs
 
@@ -80,6 +80,6 @@ job_list = ext_jobs()
 for i, job in enumerate(job_list, 1):
     print(f"{i}. {job['title']}")
     print(f"   Company: {job['company']}")
-    print(f"   Location: {job['location']}")
+    # print(f"   Location: {job['location']}")
     print(f"   Tags: {', '.join(job['categories'])}")
     print("--------")
